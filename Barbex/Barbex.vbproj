@@ -78,11 +78,17 @@
     <Compile Include="Excecoes\DescontoInvalidoException.vb" />
     <Compile Include="Excecoes\HorarioOcupadoException.vb" />
     <Compile Include="Excecoes\ValidacaoException.vb" />
-    <Compile Include="Form1.vb">
+    <Compile Include="FormPrincipal.Designer.vb">
+      <DependentUpon>FormPrincipal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="FormPrincipal.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.vb">
-      <DependentUpon>Form1.vb</DependentUpon>
+    <Compile Include="Login.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Login.Designer.vb">
+      <DependentUpon>Login.vb</DependentUpon>
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Modelos\Agendamento.vb" />
@@ -92,10 +98,12 @@
     <Compile Include="Modelos\Profissional.vb" />
     <Compile Include="Modelos\Servico.vb" />
     <Compile Include="Modelos\StatusAgendamento.vb" />
+    <Compile Include="Module1.vb" />
     <Compile Include="My Project\AssemblyInfo.vb" />
     <Compile Include="My Project\Application.Designer.vb">
       <AutoGen>True</AutoGen>
       <DependentUpon>Application.myapp</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="My Project\Resources.Designer.vb">
       <AutoGen>True</AutoGen>
@@ -110,16 +118,85 @@
     <Compile Include="Negocio\GerenciadorBarbearia.vb" />
     <Compile Include="Negocio\Repositorio.vb" />
     <Compile Include="Testes\ModuloTestes.vb" />
+    <Compile Include="Dashboard.Designer.vb">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Dashboard.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucAgendamentos.Designer.vb">
+      <DependentUpon>ucAgendamentos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucAgendamentos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucCLientes.Designer.vb">
+      <DependentUpon>ucCLientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucCLientes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucConfiguracoes.Designer.vb">
+      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucConfiguracoes.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucProfissionais.Designer.vb">
+      <DependentUpon>ucProfissionais.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucProfissionais.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ucServicos.Designer.vb">
+      <DependentUpon>ucServicos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucServicos.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="FormPrincipal.resx">
+      <DependentUpon>FormPrincipal.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Login.resx">
+      <DependentUpon>Login.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
       <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dashboard.resx">
+      <DependentUpon>Dashboard.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucAgendamentos.resx">
+      <DependentUpon>ucAgendamentos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucCLientes.resx">
+      <DependentUpon>ucCLientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucConfiguracoes.resx">
+      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ucProfissionais.resx">
+      <DependentUpon>ucProfissionais.vb</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="DMSerifDisplay-Italic.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="DMSerifDisplay-Regular.ttf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Inter-Bold.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Inter-Regular.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -131,6 +208,5 @@
     </None>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
