@@ -49,6 +49,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Data" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing" />
@@ -117,6 +118,7 @@
     </Compile>
     <Compile Include="Negocio\GerenciadorBarbearia.vb" />
     <Compile Include="Negocio\Repositorio.vb" />
+    <Compile Include="Persistencia\Conexao.vb" />
     <Compile Include="Testes\ModuloTestes.vb" />
     <Compile Include="Dashboard.Designer.vb">
       <DependentUpon>Dashboard.vb</DependentUpon>
