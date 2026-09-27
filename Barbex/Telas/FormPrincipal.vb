@@ -1,4 +1,4 @@
-﻿Public Class FormPrincipal
+Public Class FormPrincipal
 
     Private Sub FormPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.StartPosition = FormStartPosition.CenterScreen
