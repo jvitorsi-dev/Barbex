@@ -1,31 +1,8 @@
-' =====================================================================
-'  BARBEX - GerenciadorBarbearia.vb  (VERSAO COM BANCO DE DADOS)
-'  ---------------------------------------------------------------------
-'  Este arquivo e o GerenciadorBarbearia.vb original do repositorio com
-'  as UNICAS alteracoes necessarias para usar o SQL Server:
-'    1) os 4 repositorios agora recebem o nome da tabela
-'    2) _agendamentos era List(Of Agendamento): virou repositorio, entao
-'       Add -> Adicionar, RemoveAll+Add -> Atualizar, Remove -> Remover
-'       e os For Each / AsReadOnly() passaram a usar ListarTodos()
-'  Nenhuma regra de negocio mudou.
-' =====================================================================
-
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
+Imports Barbex.Persistencia
 
 Namespace Negocio
-    ''' <summary>
-    ''' Fachada de negócio do sistema: concentra o CRUD das entidades,
-    ''' a validação de conflito de horários e os relatórios
-    ''' (faturamento e comissão).
-    '''
-    ''' QUEM USA O QUÊ:
-    '''  - Gabriel (UI): chama estes métodos nos eventos dos botões e
-    '''    envolve as chamadas em Try...Catch com MessageBox.
-    '''  - Helen (persistência): usa Listar*/Cadastrar* para salvar e
-    '''    recarregar os dados (Ids informados são preservados; Id = 0
-    '''    gera automaticamente).
-    ''' </summary>
     Public Class GerenciadorBarbearia
 
         Private ReadOnly _clientes As New Repositorio(Of Cliente)("dbo.Cliente")
@@ -106,11 +83,6 @@ Namespace Negocio
 #End Region
 
 #Region "Agendamentos"
-        ''' <summary>
-        ''' Agenda um atendimento aplicando TODAS as regras de negócio.
-        ''' Lança HorarioOcupadoException se o profissional já tiver
-        ''' atendimento sobreposto ao horário solicitado.
-        ''' </summary>
         Public Function Agendar(agendamento As Agendamento) As Agendamento
             ValidarAgendamentoCompleto(agendamento)
 
@@ -125,7 +97,6 @@ Namespace Negocio
             Return agendamento
         End Function
 
-        ''' <summary>Atualiza (reagenda) um agendamento existente, revalidando conflitos.</summary>
         Public Sub AtualizarAgendamento(agendamento As Agendamento)
             ValidarAgendamentoCompleto(agendamento)
 
@@ -165,10 +136,6 @@ Namespace Negocio
             Return Nothing
         End Function
 
-        ''' <summary>
-        ''' Retorna o agendamento que conflita com o informado, ou Nothing
-        ''' se o horário estiver livre. Ignora o próprio Id (para updates).
-        ''' </summary>
         Public Function EncontrarConflito(agendamento As Agendamento) As Agendamento
             For Each existente In _agendamentos.ListarTodos()
                 If existente.Id <> agendamento.Id AndAlso existente.ConflitaCom(agendamento) Then
@@ -182,7 +149,6 @@ Namespace Negocio
             Return _agendamentos.ListarTodos()
         End Function
 
-        ''' <summary>Agendamentos de um dia específico (para a grade do Gabriel).</summary>
         Public Function ListarAgendamentos(data As Date) As List(Of Agendamento)
             Dim resultado As New List(Of Agendamento)()
             For Each ag In _agendamentos.ListarTodos()
@@ -203,11 +169,6 @@ Namespace Negocio
 #End Region
 
 #Region "Relatórios"
-        ''' <summary>
-        ''' Faturamento previsto do dia = soma dos valores de todos os
-        ''' agendamentos não cancelados. Usa CalcularValorTotal de forma
-        ''' POLIMÓRFICA (agendamentos com desconto entram com valor reduzido).
-        ''' </summary>
         Public Function CalcularFaturamento(data As Date) As Decimal
             Dim total As Decimal = 0D
             For Each ag In _agendamentos.ListarTodos()
@@ -218,10 +179,6 @@ Namespace Negocio
             Return total
         End Function
 
-        ''' <summary>
-        ''' Comissão acumulada de um profissional num período.
-        ''' Usa CalcularComissao de forma POLIMÓRFICA.
-        ''' </summary>
         Public Function CalcularComissaoProfissional(profissionalId As Integer,
                                                      inicio As Date, fim As Date) As Decimal
             Dim total As Decimal = 0D
@@ -238,7 +195,7 @@ Namespace Negocio
         End Function
 #End Region
 
-#Region "Métodos auxiliares privados (encapsulados)"
+#Region "Auxiliares"
         Private Sub ValidarAgendamentoCompleto(agendamento As Agendamento)
             If agendamento Is Nothing Then Throw New ArgumentNullException(NameOf(agendamento))
             If agendamento.Cliente Is Nothing OrElse

@@ -1,37 +1,19 @@
-Imports System.Drawing
-Imports System.Windows.Forms
-Imports System.Linq
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
 Imports Barbex.Negocio
 
-''' <summary>
-''' Tela de Serviços: formulário de cadastro/edição + grid de serviços.
-''' Consumida pelo Dashboard via:
-'''   AbrirTela(New ucServicos(), btnServicos)
-'''
-''' Mesma estrutura validada em ucAgendamentos/ucCLientes/ucProfissionais:
-''' grid (Dock=Fill) montado PRIMEIRO, painel de formulário (Dock=Top)
-''' montado POR ÚLTIMO.
-'''
-''' Regras de negócio: Preco deve ser > 0 e DuracaoMinutos deve ser > 0,
-''' ambas validadas no Set das propriedades do modelo (ValidacaoException).
-''' </summary>
 Public Class ucServicos
     Inherits UserControl
 
-    ' ===================== CORES DO TEMA =====================
     Private ReadOnly corFundo As Color = Color.FromArgb(18, 18, 18)
     Private ReadOnly corCard As Color = Color.FromArgb(28, 28, 28)
     Private ReadOnly corTextoSecundario As Color = Color.Silver
     Private ReadOnly corDourado As Color = Color.FromArgb(212, 163, 82)
 
-    ' ===================== NEGÓCIO =====================
     Private barbearia As New GerenciadorBarbearia()
     Private bsServicos As New BindingSource()
     Private idAtual As Integer = 0
 
-    ' ===================== CONTROLES =====================
     Private pnlTopo As Panel
     Private txtNome As TextBox
     Private txtDescricao As TextBox
@@ -45,16 +27,13 @@ Public Class ucServicos
 
     Private tt As New ToolTip()
 
-    Private ReadOnly ALTURA_TOPO As Integer = 130
+    Private Const AlturaTopo As Integer = 130
 
     Public Sub New()
         Me.Dock = DockStyle.Fill
         Me.BackColor = corFundo
 
-        ' 1) Grid primeiro (Dock=Fill)
         MontarGrid()
-
-        ' 2) Painel de formulário por último (Dock=Top)
         MontarTopo()
 
         AddHandler Me.Load, AddressOf ucServicos_Load
@@ -64,9 +43,8 @@ Public Class ucServicos
         AtualizarGrid()
     End Sub
 
-    ' ===================== TOPO: FORMULÁRIO =====================
     Private Sub MontarTopo()
-        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = ALTURA_TOPO, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
+        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = AlturaTopo, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
 
         Dim lblNome As New Label With {.Text = "Nome", .ForeColor = corTextoSecundario, .Top = 15, .Left = 20, .AutoSize = True}
         txtNome = New TextBox With {.Top = 35, .Left = 20, .Width = 200}
@@ -96,7 +74,6 @@ Public Class ucServicos
         Me.Controls.Add(pnlTopo)
     End Sub
 
-    ' ===================== GRID =====================
     Private Sub MontarGrid()
         dgvServicos = New DataGridView With {
             .Dock = DockStyle.Fill,

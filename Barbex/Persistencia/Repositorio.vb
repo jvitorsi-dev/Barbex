@@ -3,20 +3,10 @@ Imports System.Data.SqlClient
 Imports System.Text.RegularExpressions
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
-Imports Barbex.Persistencia
 
-Namespace Negocio
-
-    ''' <summary>
-    ''' Repositório genérico que grava no SQL Server.
-    ''' É a mesma classe de antes (Adicionar, BuscarPorId, Atualizar, Remover,
-    ''' ListarTodos, ProximoId) com as mesmas assinaturas — só o "dentro" mudou:
-    ''' em vez da List(Of T) em memória, agora vai para o banco.
-    ''' O GerenciadorBarbearia continua chamando do mesmo jeito.
-    ''' </summary>
+Namespace Persistencia
     Public Class Repositorio(Of T As IIdentificavel)
 
-        ''' <summary>Nome da tabela dessa entidade. Ex.: "dbo.Cliente".</summary>
         Private ReadOnly _tabela As String
 
         Public Sub New(tabela As String)
@@ -26,14 +16,6 @@ Namespace Negocio
             _tabela = tabela
         End Sub
 
-        ' ============================================================
-        '  CRUD — mesma API da versão em memória
-        ' ============================================================
-
-        ''' <summary>
-        ''' INSERT. Se o objeto vier com Id = 0, o IDENTITY do banco gera o Id
-        ''' e ele é devolvido dentro do próprio objeto (igual ao ProximoId de antes).
-        ''' </summary>
         Public Sub Adicionar(item As T)
             If item Is Nothing Then Throw New ArgumentNullException(NameOf(item))
 
@@ -43,7 +25,7 @@ Namespace Negocio
                         PreencherParametros(cmd, item)
                         cn.Open()
 
-                        Dim gerado As Object = cmd.ExecuteScalar()   ' SELECT SCOPE_IDENTITY()
+                        Dim gerado As Object = cmd.ExecuteScalar()
                         If gerado IsNot Nothing AndAlso gerado IsNot DBNull.Value Then
                             DefinirId(item, Convert.ToInt32(gerado))
                         End If
@@ -55,7 +37,6 @@ Namespace Negocio
             End Try
         End Sub
 
-        ''' <summary>SELECT por Id. Devolve Nothing se não existir.</summary>
         Public Function BuscarPorId(id As Integer) As T
             Try
                 Using cn As SqlConnection = Conexao.CriarConexao()
@@ -76,7 +57,6 @@ Namespace Negocio
             Return Nothing
         End Function
 
-        ''' <summary>UPDATE. Lança ValidacaoException se o Id não existir.</summary>
         Public Sub Atualizar(item As T)
             If item Is Nothing Then Throw New ArgumentNullException(NameOf(item))
 
@@ -101,7 +81,6 @@ Namespace Negocio
             End If
         End Sub
 
-        ''' <summary>DELETE. True se alguma linha foi excluída.</summary>
         Public Function Remover(id As Integer) As Boolean
             Try
                 Using cn As SqlConnection = Conexao.CriarConexao()
@@ -117,7 +96,6 @@ Namespace Negocio
             End Try
         End Function
 
-        ''' <summary>SELECT de tudo, na ordem padrão da entidade.</summary>
         Public Function ListarTodos() As IReadOnlyList(Of T)
             Dim lista As New List(Of T)()
 
@@ -141,7 +119,6 @@ Namespace Negocio
             Return lista.AsReadOnly()
         End Function
 
-        ''' <summary>Próximo Id livre (maior Id + 1), igual à versão em memória.</summary>
         Public Function ProximoId() As Integer
             Using cn As SqlConnection = Conexao.CriarConexao()
                 Using cmd As New SqlCommand($"SELECT ISNULL(MAX(Id), 0) + 1 FROM {_tabela}", cn)
@@ -151,13 +128,8 @@ Namespace Negocio
             End Using
         End Function
 
-        ' ============================================================
-        '  SQL de cada entidade (o que muda de uma para outra)
-        ' ============================================================
-
         Private ReadOnly Property SqlSelecionar As String
             Get
-                ' Agendamento faz JOIN porque precisa montar Cliente, Profissional e Serviço
                 If GetType(T) Is GetType(Agendamento) Then
                     Return "SELECT a.Id, a.IdCliente, a.IdProfissional, a.IdServico, " &
                            "a.DataHora, a.Status, a.PercentualDesconto, " &
@@ -233,10 +205,6 @@ Namespace Negocio
             End Get
         End Property
 
-        ' ============================================================
-        '  objeto -> parâmetros  e  DataReader -> objeto
-        ' ============================================================
-
         Private Sub PreencherParametros(cmd As SqlCommand, item As T)
 
             If TypeOf item Is Cliente Then
@@ -268,7 +236,6 @@ Namespace Negocio
                 Return
             End If
 
-            ' Agendamento (vale também para AgendamentoComDesconto, que herda dele)
             Dim a As Agendamento = CType(CObj(item), Agendamento)
             cmd.Parameters.Add("@IdCliente", SqlDbType.Int).Value = a.Cliente.Id
             cmd.Parameters.Add("@IdProfissional", SqlDbType.Int).Value = a.Profissional.Id
@@ -301,7 +268,6 @@ Namespace Negocio
                                               CDec(rd("Preco")), CInt(rd("DuracaoMinutos")), Binario(rd, "Foto"))), T)
             End If
 
-            ' Agendamento: monta os objetos relacionados a partir do JOIN
             Dim cli As New Cliente(CInt(rd("IdCliente")), Texto(rd, "ClienteNome"),
                                    Texto(rd, "Telefone"), Texto(rd, "Email"))
             Dim prof As New Profissional(CInt(rd("IdProfissional")), Texto(rd, "ProfissionalNome"),
@@ -314,7 +280,6 @@ Namespace Negocio
             If rd("PercentualDesconto") Is DBNull.Value Then
                 ag = New Agendamento(CInt(rd("Id")), cli, prof, serv, inicio)
             Else
-                ' veio com desconto → é a classe filha (herança preservada ao carregar)
                 ag = New AgendamentoComDesconto(CInt(rd("Id")), cli, prof, serv, inicio,
                                                 CDec(rd("PercentualDesconto")))
             End If
@@ -322,7 +287,6 @@ Namespace Negocio
             Return CType(CObj(ag), T)
         End Function
 
-        ''' <summary>Devolve ao objeto o Id que o IDENTITY do banco gerou.</summary>
         Private Sub DefinirId(item As T, id As Integer)
             If TypeOf item Is Cliente Then
                 CType(CObj(item), Cliente).Id = id
@@ -338,15 +302,6 @@ Namespace Negocio
             End If
         End Sub
 
-        ' ============================================================
-        '  Erros do SQL Server -> exceções do Barbex
-        ' ============================================================
-
-        ''' <summary>
-        ''' Converte SqlException em exceção do sistema, para a tela continuar
-        ''' capturando só BarbexException. Erro 50001 é o conflito de horário
-        ''' levantado pela trigger do banco.
-        ''' </summary>
         Private Function TraduzirErro(ex As SqlException) As BarbexException
             If ex.Number = 50001 Then
                 Dim conflito As HorarioOcupadoException = MontarConflito(ex.Message)
@@ -356,11 +311,6 @@ Namespace Negocio
             Return New ValidacaoException(ex.Message)
         End Function
 
-        ''' <summary>
-        ''' Lê a mensagem do erro 50001 (trigger do banco) e monta a
-        ''' HorarioOcupadoException com o nome e o intervalo conflitante.
-        ''' Ex.: "o profissional Rafael já possui um agendamento das 10:00 às 10:30"
-        ''' </summary>
         Private Shared Function MontarConflito(mensagem As String) As HorarioOcupadoException
             Dim nome As Match = Regex.Match(mensagem, "profissional\s+(.+?)\s+\p{L}+\s+possui",
                                             RegexOptions.IgnoreCase)
@@ -373,15 +323,10 @@ Namespace Negocio
                                                DateTime.Parse(horas.Groups(2).Value))
         End Function
 
-        ' ============================================================
-        '  helpers de leitura/escrita
-        ' ============================================================
-
         Private Shared Function Nulo(valor As Object) As Object
             Return If(valor, CObj(DBNull.Value))
         End Function
 
-        ''' <summary>Parâmetro DECIMAL com escala, para não arredondar centavos.</summary>
         Private Shared Sub ParamDecimal(cmd As SqlCommand, nome As String, valor As Object)
             Dim p As SqlParameter = cmd.Parameters.Add(nome, SqlDbType.Decimal)
             p.Precision = 10
@@ -389,13 +334,11 @@ Namespace Negocio
             p.Value = Nulo(valor)
         End Sub
 
-        ''' <summary>Lê texto que pode estar NULL no banco.</summary>
         Private Shared Function Texto(rd As SqlDataReader, coluna As String) As String
             Dim i As Integer = rd.GetOrdinal(coluna)
             Return If(rd.IsDBNull(i), Nothing, rd.GetString(i))
         End Function
 
-        ''' <summary>Lê a foto (VARBINARY) — Nothing quando não tem imagem.</summary>
         Private Shared Function Binario(rd As SqlDataReader, coluna As String) As Byte()
             Dim i As Integer = rd.GetOrdinal(coluna)
             If rd.IsDBNull(i) Then Return Nothing

@@ -1,37 +1,19 @@
-Imports System.Drawing
-Imports System.Windows.Forms
-Imports System.Linq
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
 Imports Barbex.Negocio
 
-''' <summary>
-''' Tela de Profissionais: formulário de cadastro/edição + grid de profissionais.
-''' Consumida pelo Dashboard via:
-'''   AbrirTela(New ucProfissionais(), btnProfissionais)
-'''
-''' Mesma estrutura validada em ucAgendamentos/ucCLientes: grid (Dock=Fill)
-''' montado PRIMEIRO, painel de formulário (Dock=Top) montado POR ÚLTIMO.
-'''
-''' Regra de negócio chave: PercentualComissao fora de 0-100 lança
-''' ComissaoInvalidaException (subclasse de BarbexException) — tratada
-''' separadamente para dar uma mensagem mais específica ao usuário.
-''' </summary>
 Public Class ucProfissionais
     Inherits UserControl
 
-    ' ===================== CORES DO TEMA =====================
     Private ReadOnly corFundo As Color = Color.FromArgb(18, 18, 18)
     Private ReadOnly corCard As Color = Color.FromArgb(28, 28, 28)
     Private ReadOnly corTextoSecundario As Color = Color.Silver
     Private ReadOnly corDourado As Color = Color.FromArgb(212, 163, 82)
 
-    ' ===================== NEGÓCIO =====================
     Private barbearia As New GerenciadorBarbearia()
     Private bsProfissionais As New BindingSource()
     Private idAtual As Integer = 0
 
-    ' ===================== CONTROLES =====================
     Private pnlTopo As Panel
     Private txtNome As TextBox
     Private txtEspecialidade As TextBox
@@ -45,16 +27,13 @@ Public Class ucProfissionais
 
     Private tt As New ToolTip()
 
-    Private ReadOnly ALTURA_TOPO As Integer = 130
+    Private Const AlturaTopo As Integer = 130
 
     Public Sub New()
         Me.Dock = DockStyle.Fill
         Me.BackColor = corFundo
 
-        ' 1) Grid primeiro (Dock=Fill)
         MontarGrid()
-
-        ' 2) Painel de formulário por último (Dock=Top)
         MontarTopo()
 
         AddHandler Me.Load, AddressOf ucProfissionais_Load
@@ -64,9 +43,8 @@ Public Class ucProfissionais
         AtualizarGrid()
     End Sub
 
-    ' ===================== TOPO: FORMULÁRIO =====================
     Private Sub MontarTopo()
-        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = ALTURA_TOPO, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
+        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = AlturaTopo, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
 
         Dim lblNome As New Label With {.Text = "Nome", .ForeColor = corTextoSecundario, .Top = 15, .Left = 20, .AutoSize = True}
         txtNome = New TextBox With {.Top = 35, .Left = 20, .Width = 200}
@@ -95,7 +73,6 @@ Public Class ucProfissionais
         Me.Controls.Add(pnlTopo)
     End Sub
 
-    ' ===================== GRID =====================
     Private Sub MontarGrid()
         dgvProfissionais = New DataGridView With {
             .Dock = DockStyle.Fill,
@@ -197,7 +174,4 @@ Public Class ucProfissionais
         End Try
     End Sub
 
-    Private Sub ucProfissionais_Load_1(sender As Object, e As EventArgs) Handles MyBase.Load
-
-    End Sub
 End Class

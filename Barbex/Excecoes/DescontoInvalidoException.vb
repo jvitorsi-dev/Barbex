@@ -1,12 +1,7 @@
 Namespace Excecoes
-    ''' <summary>
-    ''' Lançada quando o percentual de desconto de um agendamento
-    ''' promocional está fora da faixa permitida (0% a 100%).
-    ''' </summary>
     Public Class DescontoInvalidoException
         Inherits ValidacaoException
 
-        ''' <summary>Percentual que o usuário tentou informar.</summary>
         Public ReadOnly Property ValorInformado As Decimal
 
         Public Sub New(valorInformado As Decimal)

@@ -1,9 +1,4 @@
 Namespace Excecoes
-    ''' <summary>
-    ''' Exceção BASE de todas as regras de negócio do Barbex.
-    ''' Herda de Exception e permite que a interface capture qualquer erro
-    ''' do sistema com um único "Catch ex As BarbexException".
-    ''' </summary>
     Public Class BarbexException
         Inherits Exception
 

@@ -2,7 +2,6 @@
 Partial Class ucConfiguracoes
     Inherits System.Windows.Forms.UserControl
 
-    'O UserControl substitui o descarte para limpar a lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -14,12 +13,8 @@ Partial Class ucConfiguracoes
         End Try
     End Sub
 
-    'Exigido pelo Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'OBSERVAÇÃO: o procedimento a seguir é exigido pelo Windows Form Designer
-    'Pode ser modificado usando o Windows Form Designer.
-    'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.pnlAbas = New System.Windows.Forms.Panel()
@@ -32,9 +27,6 @@ Partial Class ucConfiguracoes
         Me.pnlNotificacoes = New System.Windows.Forms.Panel()
         Me.pnlAbas.SuspendLayout()
         Me.SuspendLayout()
-        '
-        ' pnlAbas  (NOVO: cabeçalho com Dock=Top, reserva o espaço dos botões de aba)
-        '
         Me.pnlAbas.Dock = System.Windows.Forms.DockStyle.Top
         Me.pnlAbas.Location = New System.Drawing.Point(0, 0)
         Me.pnlAbas.Name = "pnlAbas"
@@ -44,17 +36,11 @@ Partial Class ucConfiguracoes
         Me.pnlAbas.Controls.Add(Me.btnTabBarbearia)
         Me.pnlAbas.Controls.Add(Me.btnTabUsuario)
         Me.pnlAbas.Controls.Add(Me.btnTabNotificacoes)
-        '
-        'Panel1  (barra de fundo atrás dos botões — reposicionado dentro de pnlAbas)
-        '
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.Panel1.Location = New System.Drawing.Point(3, 5)
         Me.Panel1.Name = "Panel1"
         Me.Panel1.Size = New System.Drawing.Size(774, 37)
         Me.Panel1.TabIndex = 3
-        '
-        'btnTabBarbearia  (Y ajustado para dentro de pnlAbas)
-        '
         Me.btnTabBarbearia.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTabBarbearia.FlatAppearance.BorderSize = 0
         Me.btnTabBarbearia.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
@@ -65,9 +51,6 @@ Partial Class ucConfiguracoes
         Me.btnTabBarbearia.TabIndex = 0
         Me.btnTabBarbearia.Text = "Barbearia"
         Me.btnTabBarbearia.UseVisualStyleBackColor = False
-        '
-        'btnTabUsuario
-        '
         Me.btnTabUsuario.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTabUsuario.FlatAppearance.BorderSize = 0
         Me.btnTabUsuario.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
@@ -78,9 +61,6 @@ Partial Class ucConfiguracoes
         Me.btnTabUsuario.TabIndex = 1
         Me.btnTabUsuario.Text = "Usuário"
         Me.btnTabUsuario.UseVisualStyleBackColor = False
-        '
-        'btnTabNotificacoes
-        '
         Me.btnTabNotificacoes.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnTabNotificacoes.FlatAppearance.BorderSize = 0
         Me.btnTabNotificacoes.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
@@ -91,35 +71,23 @@ Partial Class ucConfiguracoes
         Me.btnTabNotificacoes.TabIndex = 2
         Me.btnTabNotificacoes.Text = "Notificações"
         Me.btnTabNotificacoes.UseVisualStyleBackColor = False
-        '
-        'pnlBarbearia  (agora Dock=Fill respeita o espaço reservado por pnlAbas)
-        '
         Me.pnlBarbearia.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlBarbearia.Location = New System.Drawing.Point(0, 110)
         Me.pnlBarbearia.Name = "pnlBarbearia"
         Me.pnlBarbearia.Size = New System.Drawing.Size(780, 510)
         Me.pnlBarbearia.TabIndex = 5
-        '
-        'pnlUsuario
-        '
         Me.pnlUsuario.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlUsuario.Location = New System.Drawing.Point(0, 110)
         Me.pnlUsuario.Name = "pnlUsuario"
         Me.pnlUsuario.Size = New System.Drawing.Size(780, 510)
         Me.pnlUsuario.TabIndex = 5
         Me.pnlUsuario.Visible = False
-        '
-        'pnlNotificacoes
-        '
         Me.pnlNotificacoes.Dock = System.Windows.Forms.DockStyle.Fill
         Me.pnlNotificacoes.Location = New System.Drawing.Point(0, 110)
         Me.pnlNotificacoes.Name = "pnlNotificacoes"
         Me.pnlNotificacoes.Size = New System.Drawing.Size(780, 510)
         Me.pnlNotificacoes.TabIndex = 4
         Me.pnlNotificacoes.Visible = False
-        '
-        'ucConfiguracoes
-        '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer), CType(CType(18, Byte), Integer))
@@ -131,7 +99,6 @@ Partial Class ucConfiguracoes
         Me.Size = New System.Drawing.Size(780, 620)
         Me.pnlAbas.ResumeLayout(False)
         Me.ResumeLayout(False)
-
     End Sub
 
     Friend WithEvents pnlAbas As Panel

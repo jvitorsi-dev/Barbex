@@ -1,14 +1,11 @@
 Public Class ucConfiguracoes
 
-    ' Cores para destacar a aba ativa — ajuste se quiser bater 100% com o Dashboard
-    Private ReadOnly corAbaAtiva As Color = Color.FromArgb(54, 42, 20)     ' dourado bem escuro/suave
-    Private ReadOnly corTextoAtivo As Color = Color.FromArgb(230, 168, 62) ' dourado
+    Private ReadOnly corAbaAtiva As Color = Color.FromArgb(54, 42, 20)
+    Private ReadOnly corTextoAtivo As Color = Color.FromArgb(230, 168, 62)
     Private ReadOnly corAbaPadrao As Color = Color.FromArgb(28, 28, 30)
     Private ReadOnly corTextoPadrao As Color = Color.Silver
 
     Private Sub ucConfiguracoes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' TODO: chamar aqui as rotinas que carregam os dados salvos de cada aba
-        ' (SELECT na tabela Barbearias, Usuarios, PreferenciasNotificacao...)
         MostrarAba(pnlBarbearia, btnTabBarbearia)
     End Sub
 

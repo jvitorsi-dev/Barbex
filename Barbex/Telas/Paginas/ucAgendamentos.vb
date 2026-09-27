@@ -1,33 +1,18 @@
-Imports System.Drawing
-Imports System.Windows.Forms
-Imports System.Linq
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
 Imports Barbex.Negocio
 
-''' <summary>
-''' Tela de Agendamentos: formulário para criar um novo agendamento + grid dos agendamentos do dia.
-''' Consumida pelo Dashboard via:
-'''   AbrirTela(New ucAgendamentos(), btnAgendamentos)
-'''
-''' Estrutura: UM único painel de topo (pnlTopo, Dock=Top) reunindo filtro + formulário,
-''' adicionado a Me.Controls DEPOIS do grid (Dock=Fill) — mesma ordem que já validamos
-''' funcionar corretamente no ucConfiguracoes (Fill primeiro, Top por último).
-''' </summary>
 Public Class ucAgendamentos
     Inherits UserControl
 
-    ' ===================== CORES DO TEMA =====================
     Private ReadOnly corFundo As Color = Color.FromArgb(18, 18, 18)
     Private ReadOnly corCard As Color = Color.FromArgb(28, 28, 28)
     Private ReadOnly corTextoSecundario As Color = Color.Silver
     Private ReadOnly corDourado As Color = Color.FromArgb(212, 163, 82)
 
-    ' ===================== NEGÓCIO =====================
     Private barbearia As New GerenciadorBarbearia()
     Private bsAgendamentos As New BindingSource()
 
-    ' ===================== CONTROLES =====================
     Private pnlTopo As Panel
     Private WithEvents dtpFiltroData As DateTimePicker
     Private WithEvents btnFiltrar As Button
@@ -43,16 +28,13 @@ Public Class ucAgendamentos
 
     Private tt As New ToolTip()
 
-    Private ReadOnly ALTURA_TOPO As Integer = 190
+    Private Const AlturaTopo As Integer = 190
 
     Public Sub New()
         Me.Dock = DockStyle.Fill
         Me.BackColor = corFundo
 
-        ' 1) Grid primeiro (Dock=Fill) — igual ao padrão validado no ucConfiguracoes
         MontarGrid()
-
-        ' 2) Painel de topo por último (Dock=Top) — fica por cima/reserva espaço corretamente
         MontarTopo()
 
         AddHandler Me.Load, AddressOf ucAgendamentos_Load
@@ -63,11 +45,9 @@ Public Class ucAgendamentos
         AtualizarGrid()
     End Sub
 
-    ' ===================== TOPO: FILTRO + FORMULÁRIO EM UM SÓ PAINEL =====================
     Private Sub MontarTopo()
-        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = ALTURA_TOPO, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
+        pnlTopo = New Panel With {.Dock = DockStyle.Top, .Height = AlturaTopo, .BackColor = corCard, .Padding = New Padding(20, 15, 20, 10)}
 
-        ' --- Linha 1: Cliente / Profissional / Serviço ---
         Dim lblCliente As New Label With {.Text = "Cliente", .ForeColor = corTextoSecundario, .Top = 15, .Left = 20, .AutoSize = True}
         cboCliente = New ComboBox With {.Top = 35, .Left = 20, .Width = 200, .DropDownStyle = ComboBoxStyle.DropDownList}
 
@@ -77,7 +57,6 @@ Public Class ucAgendamentos
         Dim lblServico As New Label With {.Text = "Serviço", .ForeColor = corTextoSecundario, .Top = 15, .Left = 460, .AutoSize = True}
         cboServico = New ComboBox With {.Top = 35, .Left = 460, .Width = 200, .DropDownStyle = ComboBoxStyle.DropDownList}
 
-        ' --- Linha 2: Data/Hora / Desconto / Agendar ---
         Dim lblDataHora As New Label With {.Text = "Data/Hora", .ForeColor = corTextoSecundario, .Top = 75, .Left = 20, .AutoSize = True}
         dtpDataHora = New DateTimePicker With {.Top = 95, .Left = 20, .Width = 200, .Format = DateTimePickerFormat.Custom, .CustomFormat = "dd/MM/yyyy HH:mm"}
 
@@ -87,7 +66,6 @@ Public Class ucAgendamentos
         btnAgendar = New Button With {.Text = "Agendar", .Top = 93, .Left = 460, .Width = 150, .Height = 32, .BackColor = corDourado, .FlatStyle = FlatStyle.Flat}
         btnAgendar.FlatAppearance.BorderSize = 0
 
-        ' --- Linha 3: filtro de data do grid ---
         Dim lblFiltroData As New Label With {.Text = "Ver agendamentos de:", .ForeColor = corTextoSecundario, .Top = 145, .Left = 20, .AutoSize = True}
         dtpFiltroData = New DateTimePicker With {.Top = 143, .Left = 170, .Width = 130, .Format = DateTimePickerFormat.Short, .Value = DateTime.Today}
         btnFiltrar = New Button With {.Text = "Filtrar", .Top = 141, .Left = 310, .Width = 90, .Height = 26, .FlatStyle = FlatStyle.Flat, .BackColor = corFundo, .ForeColor = Color.White}
@@ -141,7 +119,6 @@ Public Class ucAgendamentos
         End Try
     End Sub
 
-    ' ===================== GRID =====================
     Private Sub MontarGrid()
         dgvAgendamentos = New DataGridView With {
             .Dock = DockStyle.Fill,

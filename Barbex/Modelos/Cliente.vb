@@ -2,22 +2,15 @@ Imports System.Text.RegularExpressions
 Imports Barbex.Excecoes
 
 Namespace Modelos
-    ''' <summary>
-    ''' Representa um cliente da barbearia.
-    ''' ENCAPSULAMENTO: todos os campos são Private e o acesso acontece
-    ''' apenas pelas Properties, que validam os dados no bloco Set.
-    ''' </summary>
     Public Class Cliente
         Implements IIdentificavel
 
-        ' ---------- Campos privados (backing fields) ----------
         Private _id As Integer
         Private _nome As String
         Private _telefone As String
         Private _email As String
-        Private _foto As Byte()   ' foto em bytes: a Helen converte p/ Base64 na persistência
+        Private _foto As Byte()
 
-        ' ---------- Construtores ----------
         Public Sub New()
         End Sub
 
@@ -30,7 +23,6 @@ Namespace Modelos
             Me.Foto = foto
         End Sub
 
-        ' ---------- Properties encapsuladas com validação no Set ----------
         Public Property Id As Integer Implements IIdentificavel.Id
             Get
                 Return _id
@@ -94,7 +86,6 @@ Namespace Modelos
             End Set
         End Property
 
-        ''' <summary>True quando há foto carregada (útil para a tela do Gabriel).</summary>
         Public ReadOnly Property TemFoto As Boolean
             Get
                 Return _foto IsNot Nothing AndAlso _foto.Length > 0
