@@ -5,6 +5,8 @@ Imports Barbex.Persistencia
 Namespace Negocio
     Public Class GerenciadorBarbearia
 
+        Public Shared ReadOnly Instancia As New GerenciadorBarbearia()
+
         Private ReadOnly _clientes As New Repositorio(Of Cliente)("dbo.Cliente")
         Private ReadOnly _profissionais As New Repositorio(Of Profissional)("dbo.Profissional")
         Private ReadOnly _servicos As New Repositorio(Of Servico)("dbo.Servico")

@@ -138,12 +138,6 @@
     <Compile Include="Telas\Paginas\ucClientes.vb">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Telas\Paginas\ucConfiguracoes.Designer.vb">
-      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Telas\Paginas\ucConfiguracoes.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
     <Compile Include="Telas\Paginas\ucProfissionais.Designer.vb">
       <DependentUpon>ucProfissionais.vb</DependentUpon>
     </Compile>
@@ -165,7 +159,7 @@
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
@@ -179,11 +173,11 @@
     <EmbeddedResource Include="Telas\Paginas\ucClientes.resx">
       <DependentUpon>ucClientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Telas\Paginas\ucConfiguracoes.resx">
-      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Telas\Paginas\ucProfissionais.resx">
       <DependentUpon>ucProfissionais.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Telas\Paginas\ucServicos.resx">
+      <DependentUpon>ucServicos.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -209,6 +203,19 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salvar.png" />
+    <None Include="Resources\salvar1.png" />
+    <None Include="Resources\calendar.png" />
+    <None Include="Resources\clientes.png" />
+    <None Include="Resources\profissionais.png" />
+    <None Include="Resources\servicos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fotos\SemFoto.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>

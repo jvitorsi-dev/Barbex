@@ -2,6 +2,7 @@
 Partial Class Dashboard
     Inherits System.Windows.Forms.UserControl
 
+    'O UserControl substitui o descarte para limpar a lista de componentes.
     <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
@@ -13,28 +14,34 @@ Partial Class Dashboard
         End Try
     End Sub
 
+    'Exigido pelo Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
+    'OBSERVAÇÃO: o procedimento a seguir é exigido pelo Windows Form Designer
+    'Pode ser modificado usando o Windows Form Designer.  
+    'Não o modifique usando o editor de códigos.
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Dashboard))
         Me.Panel2 = New System.Windows.Forms.Panel()
-        Me.btnAgendamentos = New System.Windows.Forms.Button()
-        Me.btnProfissionais = New System.Windows.Forms.Button()
-        Me.btnClientes = New System.Windows.Forms.Button()
-        Me.btnConfiguracoes = New System.Windows.Forms.Button()
-        Me.btnServicos = New System.Windows.Forms.Button()
+        Me.Label3 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel3 = New System.Windows.Forms.Panel()
-        Me.Label3 = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.btnServicos = New System.Windows.Forms.Button()
         Me.pnlsidebar = New System.Windows.Forms.Panel()
         Me.pnlConteudo = New System.Windows.Forms.Panel()
+        Me.btnClientes = New System.Windows.Forms.Button()
+        Me.btnProfissionais = New System.Windows.Forms.Button()
+        Me.btnAgendamentos = New System.Windows.Forms.Button()
+        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Panel2.SuspendLayout()
         Me.Panel1.SuspendLayout()
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.pnlsidebar.SuspendLayout()
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
+        '
+        'Panel2
+        '
         Me.Panel2.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
         Me.Panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.Panel2.Controls.Add(Me.PictureBox1)
@@ -45,67 +52,9 @@ Partial Class Dashboard
         Me.Panel2.Name = "Panel2"
         Me.Panel2.Size = New System.Drawing.Size(1384, 86)
         Me.Panel2.TabIndex = 1
-        Me.btnAgendamentos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnAgendamentos.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnAgendamentos.Location = New System.Drawing.Point(12, 23)
-        Me.btnAgendamentos.Name = "btnAgendamentos"
-        Me.btnAgendamentos.Size = New System.Drawing.Size(191, 39)
-        Me.btnAgendamentos.TabIndex = 1
-        Me.btnAgendamentos.Text = "Agendamentos"
-        Me.btnAgendamentos.UseVisualStyleBackColor = True
-        Me.btnProfissionais.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.btnProfissionais.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnProfissionais.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnProfissionais.ForeColor = System.Drawing.Color.Transparent
-        Me.btnProfissionais.Location = New System.Drawing.Point(12, 113)
-        Me.btnProfissionais.Name = "btnProfissionais"
-        Me.btnProfissionais.Size = New System.Drawing.Size(191, 39)
-        Me.btnProfissionais.TabIndex = 3
-        Me.btnProfissionais.Text = "Profissionais"
-        Me.btnProfissionais.UseVisualStyleBackColor = False
-        Me.btnClientes.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.btnClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnClientes.ForeColor = System.Drawing.SystemColors.ButtonFace
-        Me.btnClientes.Image = CType(resources.GetObject("btnClientes.Image"), System.Drawing.Image)
-        Me.btnClientes.ImageAlign = System.Drawing.ContentAlignment.BottomLeft
-        Me.btnClientes.Location = New System.Drawing.Point(12, 68)
-        Me.btnClientes.Name = "btnClientes"
-        Me.btnClientes.Size = New System.Drawing.Size(191, 39)
-        Me.btnClientes.TabIndex = 2
-        Me.btnClientes.Text = "Clientes"
-        Me.btnClientes.UseVisualStyleBackColor = False
-        Me.btnConfiguracoes.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.btnConfiguracoes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnConfiguracoes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnConfiguracoes.ForeColor = System.Drawing.Color.Transparent
-        Me.btnConfiguracoes.Location = New System.Drawing.Point(12, 203)
-        Me.btnConfiguracoes.Name = "btnConfiguracoes"
-        Me.btnConfiguracoes.Size = New System.Drawing.Size(191, 39)
-        Me.btnConfiguracoes.TabIndex = 4
-        Me.btnConfiguracoes.Text = "Configurações"
-        Me.btnConfiguracoes.UseVisualStyleBackColor = False
-        Me.btnServicos.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.btnServicos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
-        Me.btnServicos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
-        Me.btnServicos.ForeColor = System.Drawing.Color.Transparent
-        Me.btnServicos.Location = New System.Drawing.Point(12, 158)
-        Me.btnServicos.Name = "btnServicos"
-        Me.btnServicos.Size = New System.Drawing.Size(191, 39)
-        Me.btnServicos.TabIndex = 5
-        Me.btnServicos.Text = "Serviços"
-        Me.btnServicos.UseVisualStyleBackColor = False
-        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.Panel1.Controls.Add(Me.Panel3)
-        Me.Panel1.Location = New System.Drawing.Point(-1, -1)
-        Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(212, 86)
-        Me.Panel1.TabIndex = 1
-        Me.Panel3.Location = New System.Drawing.Point(220, 48)
-        Me.Panel3.Name = "Panel3"
-        Me.Panel3.Size = New System.Drawing.Size(1164, 815)
-        Me.Panel3.TabIndex = 2
+        '
+        'Label3
+        '
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.ForeColor = System.Drawing.Color.White
         Me.Label3.Location = New System.Drawing.Point(88, 24)
@@ -114,6 +63,105 @@ Partial Class Dashboard
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Barbex"
         Me.Label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft
+        '
+        'Panel1
+        '
+        Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.Panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.Panel1.Controls.Add(Me.Panel3)
+        Me.Panel1.Location = New System.Drawing.Point(-1, -1)
+        Me.Panel1.Name = "Panel1"
+        Me.Panel1.Size = New System.Drawing.Size(212, 86)
+        Me.Panel1.TabIndex = 1
+        '
+        'Panel3
+        '
+        Me.Panel3.Location = New System.Drawing.Point(220, 48)
+        Me.Panel3.Name = "Panel3"
+        Me.Panel3.Size = New System.Drawing.Size(1164, 815)
+        Me.Panel3.TabIndex = 2
+        '
+        'btnServicos
+        '
+        Me.btnServicos.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnServicos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnServicos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnServicos.ForeColor = System.Drawing.Color.Transparent
+        Me.btnServicos.Image = Global.Barbex.My.Resources.Resources.servicos
+        Me.btnServicos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnServicos.Location = New System.Drawing.Point(12, 158)
+        Me.btnServicos.Name = "btnServicos"
+        Me.btnServicos.Size = New System.Drawing.Size(191, 39)
+        Me.btnServicos.TabIndex = 5
+        Me.btnServicos.Text = "Serviços"
+        Me.btnServicos.UseVisualStyleBackColor = False
+        '
+        'pnlsidebar
+        '
+        Me.pnlsidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.pnlsidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.pnlsidebar.Controls.Add(Me.btnServicos)
+        Me.pnlsidebar.Controls.Add(Me.btnClientes)
+        Me.pnlsidebar.Controls.Add(Me.btnProfissionais)
+        Me.pnlsidebar.Controls.Add(Me.btnAgendamentos)
+        Me.pnlsidebar.Dock = System.Windows.Forms.DockStyle.Left
+        Me.pnlsidebar.Location = New System.Drawing.Point(0, 86)
+        Me.pnlsidebar.Name = "pnlsidebar"
+        Me.pnlsidebar.Size = New System.Drawing.Size(212, 730)
+        Me.pnlsidebar.TabIndex = 0
+        '
+        'pnlConteudo
+        '
+        Me.pnlConteudo.Location = New System.Drawing.Point(210, 86)
+        Me.pnlConteudo.Name = "pnlConteudo"
+        Me.pnlConteudo.Size = New System.Drawing.Size(1174, 730)
+        Me.pnlConteudo.TabIndex = 2
+        '
+        'btnClientes
+        '
+        Me.btnClientes.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnClientes.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnClientes.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnClientes.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnClientes.Image = Global.Barbex.My.Resources.Resources.clientes
+        Me.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnClientes.Location = New System.Drawing.Point(12, 68)
+        Me.btnClientes.Name = "btnClientes"
+        Me.btnClientes.Size = New System.Drawing.Size(191, 39)
+        Me.btnClientes.TabIndex = 2
+        Me.btnClientes.Text = "Clientes"
+        Me.btnClientes.UseVisualStyleBackColor = False
+        '
+        'btnProfissionais
+        '
+        Me.btnProfissionais.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
+        Me.btnProfissionais.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.btnProfissionais.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnProfissionais.ForeColor = System.Drawing.Color.Transparent
+        Me.btnProfissionais.Image = Global.Barbex.My.Resources.Resources.profissionais
+        Me.btnProfissionais.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnProfissionais.Location = New System.Drawing.Point(12, 113)
+        Me.btnProfissionais.Name = "btnProfissionais"
+        Me.btnProfissionais.Size = New System.Drawing.Size(191, 39)
+        Me.btnProfissionais.TabIndex = 3
+        Me.btnProfissionais.Text = "Profissionais"
+        Me.btnProfissionais.UseVisualStyleBackColor = False
+        '
+        'btnAgendamentos
+        '
+        Me.btnAgendamentos.FlatStyle = System.Windows.Forms.FlatStyle.Popup
+        Me.btnAgendamentos.ForeColor = System.Drawing.SystemColors.ButtonFace
+        Me.btnAgendamentos.Image = Global.Barbex.My.Resources.Resources.calendar
+        Me.btnAgendamentos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft
+        Me.btnAgendamentos.Location = New System.Drawing.Point(12, 23)
+        Me.btnAgendamentos.Name = "btnAgendamentos"
+        Me.btnAgendamentos.Size = New System.Drawing.Size(191, 39)
+        Me.btnAgendamentos.TabIndex = 1
+        Me.btnAgendamentos.Text = "Agendamentos"
+        Me.btnAgendamentos.UseVisualStyleBackColor = True
+        '
+        'PictureBox1
+        '
         Me.PictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
         Me.PictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PictureBox1.Image = CType(resources.GetObject("PictureBox1.Image"), System.Drawing.Image)
@@ -123,22 +171,9 @@ Partial Class Dashboard
         Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
         Me.PictureBox1.TabIndex = 2
         Me.PictureBox1.TabStop = False
-        Me.pnlsidebar.BackColor = System.Drawing.Color.FromArgb(CType(CType(28, Byte), Integer), CType(CType(28, Byte), Integer), CType(CType(30, Byte), Integer))
-        Me.pnlsidebar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
-        Me.pnlsidebar.Controls.Add(Me.btnServicos)
-        Me.pnlsidebar.Controls.Add(Me.btnConfiguracoes)
-        Me.pnlsidebar.Controls.Add(Me.btnClientes)
-        Me.pnlsidebar.Controls.Add(Me.btnProfissionais)
-        Me.pnlsidebar.Controls.Add(Me.btnAgendamentos)
-        Me.pnlsidebar.Dock = System.Windows.Forms.DockStyle.Left
-        Me.pnlsidebar.Location = New System.Drawing.Point(0, 86)
-        Me.pnlsidebar.Name = "pnlsidebar"
-        Me.pnlsidebar.Size = New System.Drawing.Size(212, 730)
-        Me.pnlsidebar.TabIndex = 0
-        Me.pnlConteudo.Location = New System.Drawing.Point(210, 86)
-        Me.pnlConteudo.Name = "pnlConteudo"
-        Me.pnlConteudo.Size = New System.Drawing.Size(1174, 730)
-        Me.pnlConteudo.TabIndex = 2
+        '
+        'Dashboard
+        '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(11, Byte), Integer))
@@ -149,15 +184,15 @@ Partial Class Dashboard
         Me.Size = New System.Drawing.Size(1384, 816)
         Me.Panel2.ResumeLayout(False)
         Me.Panel1.ResumeLayout(False)
-        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.pnlsidebar.ResumeLayout(False)
+        CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+
     End Sub
     Friend WithEvents Panel2 As Panel
     Friend WithEvents btnAgendamentos As Button
     Friend WithEvents btnProfissionais As Button
     Friend WithEvents btnClientes As Button
-    Friend WithEvents btnConfiguracoes As Button
     Friend WithEvents btnServicos As Button
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label3 As Label

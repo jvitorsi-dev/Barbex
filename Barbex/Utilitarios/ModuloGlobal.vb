@@ -6,7 +6,6 @@ Module ModuloGlobal
     Public caminhoFoto As String
 
     Public telaDashboardAtual As Dashboard
-    Public telaConfiguracoesAtual As ucConfiguracoes
 
     Public fontesPrivadas As New PrivateFontCollection()
     Public familiaInter As FontFamily
