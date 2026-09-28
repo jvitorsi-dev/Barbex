@@ -1,11 +1,6 @@
 Imports Barbex.Excecoes
 
 Namespace Modelos
-    ''' <summary>
-    ''' Agendamento de um serviço.
-    ''' Classe BASE da hierarquia: os métodos de cálculo são Overridable
-    ''' para que AgendamentoComDesconto possa especializá-los (POLIMORFISMO).
-    ''' </summary>
     Public Class Agendamento
         Implements IIdentificavel
 
@@ -96,38 +91,25 @@ Namespace Modelos
             End Set
         End Property
 
-        ''' <summary>Horário de término = início + duração do serviço.</summary>
         Public ReadOnly Property HorarioFim As DateTime
             Get
                 Return DataHora.AddMinutes(If(Servico Is Nothing, 0, Servico.DuracaoMinutos))
             End Get
         End Property
 
-        ' ============================================================
-        '  MÉTODOS OVERRIDABLE — aqui mora o POLIMORFISMO da P1
-        ' ============================================================
-
-        ''' <summary>Valor cobrado do cliente. Na classe base é o preço cheio do serviço.</summary>
         Public Overridable Function CalcularValorTotal() As Decimal
             Return If(Servico Is Nothing, 0D, Servico.Preco)
         End Function
 
-        ''' <summary>Comissão devida ao profissional sobre o valor do atendimento.</summary>
         Public Overridable Function CalcularComissao() As Decimal
             Dim percentual As Decimal = If(Profissional Is Nothing, 0D, Profissional.PercentualComissao)
             Return CalcularValorTotal() * (percentual / 100D)
         End Function
 
-        ''' <summary>Texto de exibição do agendamento (telas e relatórios).</summary>
         Public Overridable Function Resumo() As String
             Return $"[{Status}] {DataHora:dd/MM/yyyy HH:mm} - {Cliente?.Nome} com {Profissional?.Nome} ({Servico?.Nome}) = {CalcularValorTotal():C2}"
         End Function
 
-        ''' <summary>
-        ''' REGRA DE CONFLITO: dois agendamentos conflitam quando são do MESMO
-        ''' profissional e seus intervalos [início, fim) se sobrepõem.
-        ''' Agendamentos cancelados nunca conflitam.
-        ''' </summary>
         Public Function ConflitaCom(outro As Agendamento) As Boolean
             If outro Is Nothing Then Return False
             If Me.Status = StatusAgendamento.Cancelado OrElse
@@ -135,7 +117,6 @@ Namespace Modelos
             If Me.Profissional Is Nothing OrElse outro.Profissional Is Nothing Then Return False
             If Me.Profissional.Id <> outro.Profissional.Id Then Return False
 
-            ' Sobreposição de intervalos: A começa antes de B terminar E B começa antes de A terminar
             Return Me.DataHora < outro.HorarioFim AndAlso outro.DataHora < Me.HorarioFim
         End Function
 

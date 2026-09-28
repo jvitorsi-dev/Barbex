@@ -1,11 +1,6 @@
 Imports Barbex.Excecoes
 
 Namespace Modelos
-    ''' <summary>
-    ''' Representa um serviço oferecido (corte, barba, coloração...).
-    ''' A duração em minutos é usada para calcular o horário de término
-    ''' do atendimento e detectar conflitos de agenda.
-    ''' </summary>
     Public Class Servico
         Implements IIdentificavel
 
@@ -14,7 +9,7 @@ Namespace Modelos
         Private _descricao As String
         Private _preco As Decimal
         Private _duracaoMinutos As Integer
-        Private _foto As Byte()   ' imagem ilustrativa do serviço (exibida no DataGridView)
+        Private _foto As Byte()
 
         Public Sub New()
         End Sub

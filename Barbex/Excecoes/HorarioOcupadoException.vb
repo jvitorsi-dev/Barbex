@@ -1,8 +1,4 @@
 Namespace Excecoes
-    ''' <summary>
-    ''' Lançada quando se tenta agendar um horário que conflita com outro
-    ''' agendamento do MESMO profissional (intervalos sobrepostos).
-    ''' </summary>
     Public Class HorarioOcupadoException
         Inherits BarbexException
 

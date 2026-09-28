@@ -1,26 +1,16 @@
 Imports Barbex.Excecoes
 Imports Barbex.Modelos
+Imports Barbex.Persistencia
 
 Namespace Negocio
-    ''' <summary>
-    ''' Fachada de negócio do sistema: concentra o CRUD das entidades,
-    ''' a validação de conflito de horários e os relatórios
-    ''' (faturamento e comissão).
-    '''
-    ''' QUEM USA O QUÊ:
-    '''  - Gabriel (UI): chama estes métodos nos eventos dos botões e
-    '''    envolve as chamadas em Try...Catch com MessageBox.
-    '''  - Helen (persistência): usa Listar*/Cadastrar* para salvar e
-    '''    recarregar os dados (Ids informados são preservados; Id = 0
-    '''    gera automaticamente).
-    ''' </summary>
     Public Class GerenciadorBarbearia
 
         Public Shared ReadOnly Instancia As New GerenciadorBarbearia()
-        Private ReadOnly _clientes As New Repositorio(Of Cliente)()
-        Private ReadOnly _profissionais As New Repositorio(Of Profissional)()
-        Private ReadOnly _servicos As New Repositorio(Of Servico)()
-        Private ReadOnly _agendamentos As New List(Of Agendamento)()
+
+        Private ReadOnly _clientes As New Repositorio(Of Cliente)("dbo.Cliente")
+        Private ReadOnly _profissionais As New Repositorio(Of Profissional)("dbo.Profissional")
+        Private ReadOnly _servicos As New Repositorio(Of Servico)("dbo.Servico")
+        Private ReadOnly _agendamentos As New Repositorio(Of Agendamento)("dbo.Agendamento")
 
 #Region "Clientes"
         Public Function CadastrarCliente(cliente As Cliente) As Cliente
@@ -95,11 +85,6 @@ Namespace Negocio
 #End Region
 
 #Region "Agendamentos"
-        ''' <summary>
-        ''' Agenda um atendimento aplicando TODAS as regras de negócio.
-        ''' Lança HorarioOcupadoException se o profissional já tiver
-        ''' atendimento sobreposto ao horário solicitado.
-        ''' </summary>
         Public Function Agendar(agendamento As Agendamento) As Agendamento
             ValidarAgendamentoCompleto(agendamento)
 
@@ -110,11 +95,10 @@ Namespace Negocio
             End If
 
             If agendamento.Id = 0 Then agendamento.Id = ProximoIdAgendamento()
-            _agendamentos.Add(agendamento)
+            _agendamentos.Adicionar(agendamento)
             Return agendamento
         End Function
 
-        ''' <summary>Atualiza (reagenda) um agendamento existente, revalidando conflitos.</summary>
         Public Sub AtualizarAgendamento(agendamento As Agendamento)
             ValidarAgendamentoCompleto(agendamento)
 
@@ -128,8 +112,7 @@ Namespace Negocio
                                                   conflito.DataHora, conflito.HorarioFim)
             End If
 
-            _agendamentos.RemoveAll(Function(a) a.Id = agendamento.Id)
-            _agendamentos.Add(agendamento)
+            _agendamentos.Atualizar(agendamento)
         End Sub
 
         Public Function ConfirmarAgendamento(id As Integer) As Boolean
@@ -145,25 +128,18 @@ Namespace Negocio
         End Function
 
         Public Function ExcluirAgendamento(id As Integer) As Boolean
-            Dim ag As Agendamento = BuscarAgendamentoPorId(id)
-            If ag Is Nothing Then Return False
-            _agendamentos.Remove(ag)
-            Return True
+            Return _agendamentos.Remover(id)
         End Function
 
         Public Function BuscarAgendamentoPorId(id As Integer) As Agendamento
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.Id = id Then Return ag
             Next
             Return Nothing
         End Function
 
-        ''' <summary>
-        ''' Retorna o agendamento que conflita com o informado, ou Nothing
-        ''' se o horário estiver livre. Ignora o próprio Id (para updates).
-        ''' </summary>
         Public Function EncontrarConflito(agendamento As Agendamento) As Agendamento
-            For Each existente In _agendamentos
+            For Each existente In _agendamentos.ListarTodos()
                 If existente.Id <> agendamento.Id AndAlso existente.ConflitaCom(agendamento) Then
                     Return existente
                 End If
@@ -172,13 +148,12 @@ Namespace Negocio
         End Function
 
         Public Function ListarAgendamentos() As IReadOnlyList(Of Agendamento)
-            Return _agendamentos.AsReadOnly()
+            Return _agendamentos.ListarTodos()
         End Function
 
-        ''' <summary>Agendamentos de um dia específico (para a grade do Gabriel).</summary>
         Public Function ListarAgendamentos(data As Date) As List(Of Agendamento)
             Dim resultado As New List(Of Agendamento)()
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.DataHora.Date = data.Date Then resultado.Add(ag)
             Next
             Return resultado
@@ -186,7 +161,7 @@ Namespace Negocio
 
         Public Function ListarAgendamentosPorProfissional(profissionalId As Integer) As List(Of Agendamento)
             Dim resultado As New List(Of Agendamento)()
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.Profissional IsNot Nothing AndAlso ag.Profissional.Id = profissionalId Then
                     resultado.Add(ag)
                 End If
@@ -196,14 +171,9 @@ Namespace Negocio
 #End Region
 
 #Region "Relatórios"
-        ''' <summary>
-        ''' Faturamento previsto do dia = soma dos valores de todos os
-        ''' agendamentos não cancelados. Usa CalcularValorTotal de forma
-        ''' POLIMÓRFICA (agendamentos com desconto entram com valor reduzido).
-        ''' </summary>
         Public Function CalcularFaturamento(data As Date) As Decimal
             Dim total As Decimal = 0D
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.Status <> StatusAgendamento.Cancelado AndAlso ag.DataHora.Date = data.Date Then
                     total += ag.CalcularValorTotal()
                 End If
@@ -211,14 +181,10 @@ Namespace Negocio
             Return total
         End Function
 
-        ''' <summary>
-        ''' Comissão acumulada de um profissional num período.
-        ''' Usa CalcularComissao de forma POLIMÓRFICA.
-        ''' </summary>
         Public Function CalcularComissaoProfissional(profissionalId As Integer,
                                                      inicio As Date, fim As Date) As Decimal
             Dim total As Decimal = 0D
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.Status <> StatusAgendamento.Cancelado AndAlso
                    ag.Profissional IsNot Nothing AndAlso
                    ag.Profissional.Id = profissionalId AndAlso
@@ -231,7 +197,7 @@ Namespace Negocio
         End Function
 #End Region
 
-#Region "Métodos auxiliares privados (encapsulados)"
+#Region "Auxiliares"
         Private Sub ValidarAgendamentoCompleto(agendamento As Agendamento)
             If agendamento Is Nothing Then Throw New ArgumentNullException(NameOf(agendamento))
             If agendamento.Cliente Is Nothing OrElse
@@ -250,7 +216,7 @@ Namespace Negocio
 
         Private Function ProximoIdAgendamento() As Integer
             Dim maior As Integer = 0
-            For Each ag In _agendamentos
+            For Each ag In _agendamentos.ListarTodos()
                 If ag.Id > maior Then maior = ag.Id
             Next
             Return maior + 1

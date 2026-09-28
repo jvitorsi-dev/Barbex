@@ -1,11 +1,6 @@
 Imports Barbex.Excecoes
 
 Namespace Modelos
-    ''' <summary>
-    ''' Agendamento promocional com desconto.
-    ''' HERANÇA: herda tudo de Agendamento (Inherits).
-    ''' POLIMORFISMO: sobrescreve (Overrides) os cálculos de valor e comissão.
-    ''' </summary>
     Public Class AgendamentoComDesconto
         Inherits Agendamento
 
@@ -21,7 +16,6 @@ Namespace Modelos
             Me.PercentualDesconto = percentualDesconto
         End Sub
 
-        ''' <summary>Percentual de desconto (0 a 100). Fora da faixa lança DescontoInvalidoException.</summary>
         Public Property PercentualDesconto As Decimal
             Get
                 Return _percentualDesconto
@@ -34,18 +28,11 @@ Namespace Modelos
             End Set
         End Property
 
-        ''' <summary>Valor com desconto aplicado sobre o preço do serviço.</summary>
         Public Overrides Function CalcularValorTotal() As Decimal
             Dim valorBase As Decimal = MyBase.CalcularValorTotal()
             Return valorBase - (valorBase * (PercentualDesconto / 100D))
         End Function
 
-        ''' <summary>
-        ''' Comissão recalculada sobre o valor JÁ COM DESCONTO.
-        ''' (Obs.: como a base chama CalcularValorTotal de forma virtual, mesmo sem
-        ''' este Overrides a comissão já sairia com desconto — mantemos a sobrescrita
-        ''' explícita para deixar a intenção clara e garantir o requisito da rubrica.)
-        ''' </summary>
         Public Overrides Function CalcularComissao() As Decimal
             Return CalcularValorTotal() * (Profissional.PercentualComissao / 100D)
         End Function

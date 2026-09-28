@@ -1,11 +1,6 @@
 Imports Barbex.Excecoes
 
 Namespace Modelos
-    ''' <summary>
-    ''' Representa um profissional (barbeiro/cabeleireiro).
-    ''' Regra de negócio: o percentual de comissão DEVE estar entre 0% e 100%
-    ''' — a validação mora no Set da propriedade e lança ComissaoInvalidaException.
-    ''' </summary>
     Public Class Profissional
         Implements IIdentificavel
 
@@ -61,10 +56,6 @@ Namespace Modelos
             End Set
         End Property
 
-        ''' <summary>
-        ''' Percentual de comissão (0 a 100). REGRA DE NEGÓCIO CHAVE:
-        ''' valores fora da faixa lançam ComissaoInvalidaException.
-        ''' </summary>
         Public Property PercentualComissao As Decimal
             Get
                 Return _percentualComissao
