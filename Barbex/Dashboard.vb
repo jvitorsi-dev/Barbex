@@ -2,11 +2,10 @@
 
 Public Class Dashboard
 
-    ' Cores pra destacar o botão
-    Private ReadOnly corTextoSelecionado As Color = Color.FromArgb(230, 168, 62)  ' dourado
-    Private ReadOnly corFundoSelecionado As Color = Color.FromArgb(54, 42, 20)    ' dourado bem escuro/suave
-    Private ReadOnly corTextoPadrao As Color = Color.FromArgb(190, 190, 190)      ' cinza claro
-    Private ReadOnly corFundoPadrao As Color = Color.FromArgb(20, 20, 20)         ' igual ao fundo da sidebar
+    Private ReadOnly corTextoSelecionado As Color = Color.FromArgb(230, 168, 62)
+    Private ReadOnly corFundoSelecionado As Color = Color.FromArgb(54, 42, 20)
+    Private ReadOnly corTextoPadrao As Color = Color.FromArgb(190, 190, 190)
+    Private ReadOnly corFundoPadrao As Color = Color.FromArgb(20, 20, 20)
 
     Private Sub Dashboard_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         ' Carrega as fontes só na primeira vez que o programa inicia
@@ -19,7 +18,7 @@ Public Class Dashboard
             (Label3, 14, FontStyle.Regular, familiaDMSerif)
         )
 
-        ' Tela inicial ao abrir o Dashboard
+        ' Tela inicial 
         AbrirTela(New ucAgendamentos(), btnAgendamentos)
     End Sub
 
@@ -39,13 +38,7 @@ Public Class Dashboard
         AbrirTela(New ucServicos(), btnServicos)
     End Sub
 
-    Private Sub btnConfiguracoes_Click(sender As Object, e As EventArgs) Handles btnConfiguracoes.Click
-        Dim tela As New ucConfiguracoes()
-        telaConfiguracoesAtual = tela   ' guarda a referência (necessário pro PictureBox da foto)
-        AbrirTela(tela, btnConfiguracoes)
-    End Sub
 
-    ' Troca o conteúdo exibido em pnlConteudo e destaca o botão selecionado
     Private Sub AbrirTela(tela As UserControl, botaoAtivo As Button)
         Try
             ' Libera os controles antigos antes de trocar
@@ -57,7 +50,7 @@ Public Class Dashboard
             tela.Dock = DockStyle.Fill
             pnlConteudo.Controls.Add(tela)
 
-            ' Reseta a cor de todos os botões da sidebar
+            ' Reseta a cor 
             For Each ctrl As Control In pnlsidebar.Controls
                 If TypeOf ctrl Is Button Then
                     ctrl.BackColor = corFundoPadrao

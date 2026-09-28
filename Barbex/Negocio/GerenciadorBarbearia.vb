@@ -16,6 +16,7 @@ Namespace Negocio
     ''' </summary>
     Public Class GerenciadorBarbearia
 
+        Public Shared ReadOnly Instancia As New GerenciadorBarbearia()
         Private ReadOnly _clientes As New Repositorio(Of Cliente)()
         Private ReadOnly _profissionais As New Repositorio(Of Profissional)()
         Private ReadOnly _servicos As New Repositorio(Of Servico)()

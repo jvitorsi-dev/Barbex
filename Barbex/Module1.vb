@@ -7,7 +7,6 @@ Module Module1
 
     ' Guarda a referência da instância do Dashboard que está ativa na tela
     Public telaDashboardAtual As Dashboard
-    Public telaConfiguracoesAtual As ucConfiguracoes
 
     ' Coleção de fontes
     Public fontesPrivadas As New PrivateFontCollection()

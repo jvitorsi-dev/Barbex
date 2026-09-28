@@ -7,13 +7,12 @@ Public Class Login
 
 
     Private Sub Login_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        ' Carrega as fontes só na primeira vez que o programa inicia
-        ' (nas próximas, já estão em memória no módulo)
+        'Carrega as fontes só na primeira vez 
         If familiaInter Is Nothing Then
             CarregarFontsDoSistema()
         End If
 
-        ' Aplicar a fonte aos controles (bem mais conciso)
+        'Aplica a fonte 
         AplicarFontesDoForm(
         (Label1, 16, FontStyle.Bold),
         (Label2, 10, FontStyle.Regular),
@@ -23,9 +22,6 @@ Public Class Login
         (Label7, 8, FontStyle.Bold),
         (Label9, 8, FontStyle.Regular),
         (Label10, 8, FontStyle.Regular),
-        (Label11, 16, FontStyle.Regular),
-        (Label12, 16, FontStyle.Regular),
-        (Label13, 16, FontStyle.Regular),
         (Button1, 8, FontStyle.Bold),
         (TextBox1, 8, FontStyle.Regular),
         (TextBox2, 8, FontStyle.Regular)
@@ -100,11 +96,15 @@ Public Class Login
 
     End Sub
 
-    Private Sub Label11_Click(sender As Object, e As EventArgs) Handles Label11.Click
+    Private Sub Label11_Click(sender As Object, e As EventArgs)
 
     End Sub
 
     Private Sub Label17_Click(sender As Object, e As EventArgs) Handles Label17.Click
+
+    End Sub
+
+    Private Sub PictureBox2_Click(sender As Object, e As EventArgs) Handles PictureBox2.Click
 
     End Sub
 End Class

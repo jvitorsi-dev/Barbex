@@ -29,12 +29,6 @@ Partial Class Login
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Panel1 = New System.Windows.Forms.Panel()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label15 = New System.Windows.Forms.Label()
-        Me.Label14 = New System.Windows.Forms.Label()
-        Me.Label13 = New System.Windows.Forms.Label()
-        Me.Label12 = New System.Windows.Forms.Label()
-        Me.Label11 = New System.Windows.Forms.Label()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.Label7 = New System.Windows.Forms.Label()
@@ -57,7 +51,7 @@ Partial Class Login
         Me.TextBox1.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(19, Byte), Integer))
         Me.TextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox1.ForeColor = System.Drawing.Color.White
-        Me.TextBox1.Location = New System.Drawing.Point(950, 364)
+        Me.TextBox1.Location = New System.Drawing.Point(950, 406)
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(386, 20)
         Me.TextBox1.TabIndex = 0
@@ -67,7 +61,7 @@ Partial Class Login
         Me.TextBox2.BackColor = System.Drawing.Color.FromArgb(CType(CType(17, Byte), Integer), CType(CType(17, Byte), Integer), CType(CType(19, Byte), Integer))
         Me.TextBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.TextBox2.ForeColor = System.Drawing.Color.White
-        Me.TextBox2.Location = New System.Drawing.Point(950, 415)
+        Me.TextBox2.Location = New System.Drawing.Point(950, 457)
         Me.TextBox2.Name = "TextBox2"
         Me.TextBox2.Size = New System.Drawing.Size(386, 20)
         Me.TextBox2.TabIndex = 1
@@ -81,7 +75,7 @@ Partial Class Login
         Me.Button1.FlatAppearance.BorderSize = 0
         Me.Button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.Button1.ForeColor = System.Drawing.Color.Black
-        Me.Button1.Location = New System.Drawing.Point(950, 474)
+        Me.Button1.Location = New System.Drawing.Point(950, 516)
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(386, 30)
         Me.Button1.TabIndex = 2
@@ -91,7 +85,7 @@ Partial Class Login
         'Label1
         '
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!)
-        Me.Label1.Location = New System.Drawing.Point(944, 275)
+        Me.Label1.Location = New System.Drawing.Point(944, 317)
         Me.Label1.Name = "Label1"
         Me.Label1.Size = New System.Drawing.Size(389, 26)
         Me.Label1.TabIndex = 3
@@ -101,7 +95,7 @@ Partial Class Login
         '
         Me.Label2.AutoSize = True
         Me.Label2.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label2.Location = New System.Drawing.Point(947, 309)
+        Me.Label2.Location = New System.Drawing.Point(947, 351)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(244, 13)
         Me.Label2.TabIndex = 4
@@ -112,12 +106,6 @@ Partial Class Login
         Me.Panel1.AutoSize = True
         Me.Panel1.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(11, Byte), Integer))
         Me.Panel1.BackgroundImage = CType(resources.GetObject("Panel1.BackgroundImage"), System.Drawing.Image)
-        Me.Panel1.Controls.Add(Me.Label16)
-        Me.Panel1.Controls.Add(Me.Label15)
-        Me.Panel1.Controls.Add(Me.Label14)
-        Me.Panel1.Controls.Add(Me.Label13)
-        Me.Panel1.Controls.Add(Me.Label12)
-        Me.Panel1.Controls.Add(Me.Label11)
         Me.Panel1.Controls.Add(Me.PictureBox2)
         Me.Panel1.Controls.Add(Me.PictureBox1)
         Me.Panel1.Controls.Add(Me.Label7)
@@ -130,78 +118,12 @@ Partial Class Login
         Me.Panel1.Size = New System.Drawing.Size(399, 1080)
         Me.Panel1.TabIndex = 5
         '
-        'Label16
-        '
-        Me.Label16.BackColor = System.Drawing.Color.Transparent
-        Me.Label16.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label16.Location = New System.Drawing.Point(252, 944)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(74, 13)
-        Me.Label16.TabIndex = 12
-        Me.Label16.Text = "Barbearias"
-        Me.Label16.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label15
-        '
-        Me.Label15.BackColor = System.Drawing.Color.Transparent
-        Me.Label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label15.Location = New System.Drawing.Point(81, 944)
-        Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(74, 13)
-        Me.Label15.TabIndex = 11
-        Me.Label15.Text = "Clientes"
-        Me.Label15.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label14
-        '
-        Me.Label14.BackColor = System.Drawing.Color.Transparent
-        Me.Label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label14.Location = New System.Drawing.Point(167, 944)
-        Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(74, 13)
-        Me.Label14.TabIndex = 10
-        Me.Label14.Text = "Satisfação"
-        Me.Label14.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label13
-        '
-        Me.Label13.BackColor = System.Drawing.Color.Transparent
-        Me.Label13.ForeColor = System.Drawing.Color.Yellow
-        Me.Label13.Location = New System.Drawing.Point(249, 892)
-        Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(78, 52)
-        Me.Label13.TabIndex = 9
-        Me.Label13.Text = "120+"
-        Me.Label13.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label12
-        '
-        Me.Label12.BackColor = System.Drawing.Color.Transparent
-        Me.Label12.ForeColor = System.Drawing.Color.Yellow
-        Me.Label12.Location = New System.Drawing.Point(165, 892)
-        Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(78, 52)
-        Me.Label12.TabIndex = 8
-        Me.Label12.Text = "98%"
-        Me.Label12.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
-        'Label11
-        '
-        Me.Label11.BackColor = System.Drawing.Color.Transparent
-        Me.Label11.ForeColor = System.Drawing.Color.Yellow
-        Me.Label11.Location = New System.Drawing.Point(81, 892)
-        Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(78, 52)
-        Me.Label11.TabIndex = 7
-        Me.Label11.Text = "2,4K"
-        Me.Label11.TextAlign = System.Drawing.ContentAlignment.MiddleCenter
-        '
         'PictureBox2
         '
         Me.PictureBox2.BackColor = System.Drawing.Color.Transparent
         Me.PictureBox2.BackgroundImage = CType(resources.GetObject("PictureBox2.BackgroundImage"), System.Drawing.Image)
         Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.PictureBox2.Location = New System.Drawing.Point(45, 481)
+        Me.PictureBox2.Location = New System.Drawing.Point(40, 560)
         Me.PictureBox2.Name = "PictureBox2"
         Me.PictureBox2.Size = New System.Drawing.Size(42, 39)
         Me.PictureBox2.TabIndex = 6
@@ -222,9 +144,9 @@ Partial Class Login
         '
         Me.Label7.BackColor = System.Drawing.Color.Transparent
         Me.Label7.ForeColor = System.Drawing.Color.White
-        Me.Label7.Location = New System.Drawing.Point(99, 485)
+        Me.Label7.Location = New System.Drawing.Point(94, 564)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(115, 17)
+        Me.Label7.Size = New System.Drawing.Size(175, 17)
         Me.Label7.TabIndex = 4
         Me.Label7.Text = "João Victor"
         '
@@ -232,7 +154,7 @@ Partial Class Login
         '
         Me.Label6.BackColor = System.Drawing.Color.Transparent
         Me.Label6.ForeColor = System.Drawing.Color.White
-        Me.Label6.Location = New System.Drawing.Point(98, 502)
+        Me.Label6.Location = New System.Drawing.Point(93, 581)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(155, 18)
         Me.Label6.TabIndex = 3
@@ -242,7 +164,7 @@ Partial Class Login
         '
         Me.Label5.BackColor = System.Drawing.Color.Transparent
         Me.Label5.ForeColor = System.Drawing.Color.FromArgb(CType(CType(212, Byte), Integer), CType(CType(168, Byte), Integer), CType(CType(83, Byte), Integer))
-        Me.Label5.Location = New System.Drawing.Point(23, 338)
+        Me.Label5.Location = New System.Drawing.Point(18, 417)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(64, 30)
         Me.Label5.TabIndex = 2
@@ -252,7 +174,7 @@ Partial Class Login
         '
         Me.Label3.BackColor = System.Drawing.Color.Transparent
         Me.Label3.ForeColor = System.Drawing.Color.White
-        Me.Label3.Location = New System.Drawing.Point(42, 368)
+        Me.Label3.Location = New System.Drawing.Point(37, 447)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(322, 59)
         Me.Label3.TabIndex = 0
@@ -262,7 +184,7 @@ Partial Class Login
         '
         Me.Label4.AutoSize = True
         Me.Label4.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label4.Location = New System.Drawing.Point(947, 398)
+        Me.Label4.Location = New System.Drawing.Point(947, 440)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(41, 13)
         Me.Label4.TabIndex = 6
@@ -272,7 +194,7 @@ Partial Class Login
         '
         Me.Label8.AutoSize = True
         Me.Label8.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label8.Location = New System.Drawing.Point(947, 347)
+        Me.Label8.Location = New System.Drawing.Point(947, 389)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(35, 13)
         Me.Label8.TabIndex = 7
@@ -281,7 +203,7 @@ Partial Class Login
         'Label10
         '
         Me.Label10.ForeColor = System.Drawing.Color.White
-        Me.Label10.Location = New System.Drawing.Point(1106, 522)
+        Me.Label10.Location = New System.Drawing.Point(1106, 564)
         Me.Label10.Name = "Label10"
         Me.Label10.RightToLeft = System.Windows.Forms.RightToLeft.No
         Me.Label10.Size = New System.Drawing.Size(168, 30)
@@ -292,7 +214,7 @@ Partial Class Login
         '
         Me.Label9.BackColor = System.Drawing.Color.FromArgb(CType(CType(10, Byte), Integer), CType(CType(10, Byte), Integer), CType(CType(11, Byte), Integer))
         Me.Label9.ForeColor = System.Drawing.SystemColors.ControlDarkDark
-        Me.Label9.Location = New System.Drawing.Point(1026, 522)
+        Me.Label9.Location = New System.Drawing.Point(1026, 564)
         Me.Label9.Name = "Label9"
         Me.Label9.Size = New System.Drawing.Size(74, 13)
         Me.Label9.TabIndex = 8
@@ -302,7 +224,7 @@ Partial Class Login
         '
         Me.Label17.AutoSize = True
         Me.Label17.ForeColor = System.Drawing.Color.Gold
-        Me.Label17.Location = New System.Drawing.Point(975, 345)
+        Me.Label17.Location = New System.Drawing.Point(975, 387)
         Me.Label17.Name = "Label17"
         Me.Label17.Size = New System.Drawing.Size(11, 13)
         Me.Label17.TabIndex = 10
@@ -312,7 +234,7 @@ Partial Class Login
         '
         Me.Label18.AutoSize = True
         Me.Label18.ForeColor = System.Drawing.Color.Gold
-        Me.Label18.Location = New System.Drawing.Point(980, 396)
+        Me.Label18.Location = New System.Drawing.Point(980, 438)
         Me.Label18.Name = "Label18"
         Me.Label18.Size = New System.Drawing.Size(11, 13)
         Me.Label18.TabIndex = 11
@@ -364,13 +286,7 @@ Partial Class Login
     Friend WithEvents PictureBox2 As PictureBox
     Friend WithEvents Label4 As Label
     Friend WithEvents Label8 As Label
-    Friend WithEvents Label11 As Label
     Public WithEvents Label9 As Label
-    Public WithEvents Label16 As Label
-    Public WithEvents Label15 As Label
-    Public WithEvents Label14 As Label
-    Friend WithEvents Label13 As Label
-    Friend WithEvents Label12 As Label
     Friend WithEvents Label10 As Label
     Friend WithEvents Label17 As Label
     Friend WithEvents Label18 As Label

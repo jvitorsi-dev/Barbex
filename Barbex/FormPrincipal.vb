@@ -2,7 +2,7 @@
 
     Private Sub FormPrincipal_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         Me.StartPosition = FormStartPosition.CenterScreen
-        Me.Size = New Size(1366, 768)   ' tamanho inicial só de fallback, caso Maximized não "pegue" no load
+        Me.Size = New Size(1366, 768)
         Me.WindowState = FormWindowState.Maximized
 
         Dim dash As New Dashboard()

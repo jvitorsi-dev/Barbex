@@ -124,6 +124,12 @@
     <Compile Include="Dashboard.vb">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="ucProfissionais.Designer.vb">
+      <DependentUpon>ucProfissionais.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ucProfissionais.vb">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="ucAgendamentos.Designer.vb">
       <DependentUpon>ucAgendamentos.vb</DependentUpon>
     </Compile>
@@ -134,18 +140,6 @@
       <DependentUpon>ucCLientes.vb</DependentUpon>
     </Compile>
     <Compile Include="ucCLientes.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucConfiguracoes.Designer.vb">
-      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ucConfiguracoes.vb">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ucProfissionais.Designer.vb">
-      <DependentUpon>ucProfissionais.vb</DependentUpon>
-    </Compile>
-    <Compile Include="ucProfissionais.vb">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Include="ucServicos.Designer.vb">
@@ -163,7 +157,7 @@
       <DependentUpon>Login.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="My Project\Resources.resx">
-      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <Generator>PublicVbMyResourcesResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.vb</LastGenOutput>
       <CustomToolNamespace>My.Resources</CustomToolNamespace>
       <SubType>Designer</SubType>
@@ -171,17 +165,17 @@
     <EmbeddedResource Include="Dashboard.resx">
       <DependentUpon>Dashboard.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ucProfissionais.resx">
+      <DependentUpon>ucProfissionais.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ucAgendamentos.resx">
       <DependentUpon>ucAgendamentos.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ucCLientes.resx">
       <DependentUpon>ucCLientes.vb</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ucConfiguracoes.resx">
-      <DependentUpon>ucConfiguracoes.vb</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="ucProfissionais.resx">
-      <DependentUpon>ucProfissionais.vb</DependentUpon>
+    <EmbeddedResource Include="ucServicos.resx">
+      <DependentUpon>ucServicos.vb</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
@@ -207,6 +201,30 @@
       <LastGenOutput>Settings.Designer.vb</LastGenOutput>
     </None>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salvar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\salvar1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\calendar.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clientes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profissionais.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\servicos.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fotos\SemFoto.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SemFoto.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
 </Project>
