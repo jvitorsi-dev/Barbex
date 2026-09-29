@@ -16,6 +16,7 @@ Public Class ucProfissionais
     Private Sub ucProfissionais_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgvProfissionais.AutoGenerateColumns = False ' só as colunas definidas na mão aparecem — Foto/TemFoto nunca entram aqui
         dgvProfissionais.DataSource = bsProfissionais
+        cboCampoBusca.Items.Clear()
         cboCampoBusca.Items.AddRange({"Nome", "Especialidade"})
         cboCampoBusca.SelectedIndex = 0
         AtualizarGrid()
@@ -86,11 +87,7 @@ Public Class ucProfissionais
         End Try
     End Sub
 
-    Private Sub txtBusca_TextChanged(sender As Object, e As EventArgs) Handles txtBusca.TextChanged
-        AtualizarGrid()
-    End Sub
-
-    Private Sub cboCampoBusca_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCampoBusca.SelectedIndexChanged
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         AtualizarGrid()
     End Sub
 

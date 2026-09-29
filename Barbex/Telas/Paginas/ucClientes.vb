@@ -21,6 +21,7 @@ Public Class ucCLientes
     Private Sub ucCLientes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         dgvCLientes.AutoGenerateColumns = False ' só as colunas definidas na mão aparecem na tabela — Foto nunca entra aqui
         dgvCLientes.DataSource = bsClientes
+        cboCampoBusca.Items.Clear()
         cboCampoBusca.Items.AddRange({"Nome", "Telefone", "E-mail"})
         cboCampoBusca.SelectedIndex = 0
         picFoto.Image = BytesParaImagem(Nothing)
@@ -116,11 +117,7 @@ Public Class ucCLientes
         End Try
     End Sub
 
-    Private Sub txtBusca_TextChanged(sender As Object, e As EventArgs) Handles txtBusca.TextChanged
-        AtualizarGrid()
-    End Sub
-
-    Private Sub cboCampoBusca_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cboCampoBusca.SelectedIndexChanged
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         AtualizarGrid()
     End Sub
 

@@ -36,6 +36,7 @@ Partial Class ucProfissionais
         Me.lblBuscarPor = New System.Windows.Forms.ToolStripLabel()
         Me.cboCampoBusca = New System.Windows.Forms.ToolStripComboBox()
         Me.txtBusca = New System.Windows.Forms.ToolStripTextBox()
+        Me.btnBuscar = New System.Windows.Forms.ToolStripButton()
         Me.nudComissao = New System.Windows.Forms.NumericUpDown()
         Me.btnRemover = New System.Windows.Forms.Button()
         Me.txtEspecialidade = New System.Windows.Forms.TextBox()
@@ -135,7 +136,7 @@ Partial Class ucProfissionais
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSalvar, Me.ToolStripSeparator1, Me.lblBuscarPor, Me.cboCampoBusca, Me.txtBusca})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSalvar, Me.ToolStripSeparator1, Me.lblBuscarPor, Me.cboCampoBusca, Me.txtBusca, Me.btnBuscar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(780, 25)
@@ -172,6 +173,13 @@ Partial Class ucProfissionais
         Me.txtBusca.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtBusca.Name = "txtBusca"
         Me.txtBusca.Size = New System.Drawing.Size(100, 25)
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(45, 22)
+        Me.btnBuscar.Text = "Buscar"
         '
         'nudComissao
         '
@@ -285,6 +293,7 @@ Partial Class ucProfissionais
     Friend WithEvents lblBuscarPor As ToolStripLabel
     Friend WithEvents cboCampoBusca As ToolStripComboBox
     Friend WithEvents txtBusca As ToolStripTextBox
+    Friend WithEvents btnBuscar As ToolStripButton
     Friend WithEvents colid As DataGridViewTextBoxColumn
     Friend WithEvents colNome As DataGridViewTextBoxColumn
     Friend WithEvents colEspecialidade As DataGridViewTextBoxColumn

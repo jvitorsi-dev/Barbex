@@ -38,6 +38,7 @@ Partial Class ucCLientes
         Me.lblBuscarpor = New System.Windows.Forms.ToolStripLabel()
         Me.cboCampoBusca = New System.Windows.Forms.ToolStripComboBox()
         Me.txtBusca = New System.Windows.Forms.ToolStripTextBox()
+        Me.btnBuscar = New System.Windows.Forms.ToolStripButton()
         Me.btnRemover = New System.Windows.Forms.Button()
         Me.btnNovo = New System.Windows.Forms.Button()
         Me.txtTelefone = New System.Windows.Forms.TextBox()
@@ -158,7 +159,7 @@ Partial Class ucCLientes
         '
         'ToolStrip1
         '
-        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSalvar, Me.ToolStripSeparator1, Me.lblBuscarpor, Me.cboCampoBusca, Me.txtBusca})
+        Me.ToolStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.btnSalvar, Me.ToolStripSeparator1, Me.lblBuscarpor, Me.cboCampoBusca, Me.txtBusca, Me.btnBuscar})
         Me.ToolStrip1.Location = New System.Drawing.Point(0, 0)
         Me.ToolStrip1.Name = "ToolStrip1"
         Me.ToolStrip1.Size = New System.Drawing.Size(780, 25)
@@ -187,7 +188,6 @@ Partial Class ucCLientes
         '
         'cboCampoBusca
         '
-        Me.cboCampoBusca.Items.AddRange(New Object() {"Nome", "Telefone", "E-mail"})
         Me.cboCampoBusca.Name = "cboCampoBusca"
         Me.cboCampoBusca.Size = New System.Drawing.Size(121, 25)
         '
@@ -196,6 +196,13 @@ Partial Class ucCLientes
         Me.txtBusca.Font = New System.Drawing.Font("Segoe UI", 9.0!)
         Me.txtBusca.Name = "txtBusca"
         Me.txtBusca.Size = New System.Drawing.Size(100, 25)
+        '
+        'btnBuscar
+        '
+        Me.btnBuscar.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text
+        Me.btnBuscar.Name = "btnBuscar"
+        Me.btnBuscar.Size = New System.Drawing.Size(45, 22)
+        Me.btnBuscar.Text = "Buscar"
         '
         'btnRemover
         '
@@ -283,6 +290,7 @@ Partial Class ucCLientes
     Friend WithEvents lblBuscarpor As ToolStripLabel
     Friend WithEvents cboCampoBusca As ToolStripComboBox
     Friend WithEvents txtBusca As ToolStripTextBox
+    Friend WithEvents btnBuscar As ToolStripButton
     Friend WithEvents colId As DataGridViewTextBoxColumn
     Friend WithEvents colNome As DataGridViewTextBoxColumn
     Friend WithEvents colTelefone As DataGridViewTextBoxColumn
